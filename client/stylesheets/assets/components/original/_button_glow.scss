@@ -1,0 +1,111 @@
+/*
+* CSS animations for glowing tutorial buttons
+*/
+
+@-webkit-keyframes bluePulse {
+  from {
+    background-color: #238896;
+    -webkit-box-shadow: 0 0 3px #333;
+  }
+  50% {
+    background-color: #5bc0de;
+    -webkit-box-shadow: 0 0 5px #5bc0de;
+  }
+  to {
+    background-color: #238896;
+    -webkit-box-shadow: 0 0 3px #333;
+  }
+}
+
+.blue-pulse {
+  -webkit-animation-name: bluePulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  color: white;
+}
+
+@-webkit-keyframes lightBluePulse {
+  from {
+    background-color: #d9edf7;
+    -webkit-box-shadow: 0 0 3px #333;
+  }
+  50% {
+    background-color: slategrey;
+    -webkit-box-shadow: 0 0 5px slategrey;
+  }
+  to {
+    background-color: #d9edf7;
+    -webkit-box-shadow: 0 0 3px #333;
+  }
+}
+
+.light-blue-pulse {
+  -webkit-animation-name: lightBluePulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  color: white;
+}
+
+@-webkit-keyframes greenPulse {
+  from {
+    background-color: #407F40;
+    -webkit-box-shadow: 0 0 3px #333;
+  }
+  50% {
+    background-color: #5CB85C;
+    -webkit-box-shadow: 0 0 5px #5CB85C;
+  }
+  to {
+    background-color: #407F40;
+    -webkit-box-shadow: 0 0 3px #333;
+  }
+}
+
+.green-pulse {
+  -webkit-animation-name: greenPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes lightGreenPulse {
+  from {
+    background-color: #DFF0D8;
+    -webkit-box-shadow: 0 0 3px #333;
+  }
+  50% {
+    background-color: #5CB85C;
+    -webkit-box-shadow: 0 0 5px #5CB85C;
+  }
+  to {
+    background-color: #DFF0D8;
+    -webkit-box-shadow: 0 0 3px #333;
+  }
+}
+
+.light-green-pulse {
+  -webkit-animation-name: lightGreenPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes navBluePulse {
+  from {
+    background-color: #1A84B0;
+    -webkit-box-shadow: 0 0 3px #333;
+  }
+  50% {
+    background-color: #479BBE;
+    -webkit-box-shadow: 0 0 5px #5bc0de;
+  }
+  to {
+    background-color: #1A84B0;
+    -webkit-box-shadow: 0 0 3px #333;
+  }
+}
+
+.nav-blue-pulse {
+  -webkit-animation-name: navBluePulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  color: white;
+}

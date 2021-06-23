@@ -1,0 +1,149 @@
+<template name="environmentSelect">
+    <div class="environment-select">
+        <select id="env-select" class="env-select chosen-select">
+            <option disabled selected value="">- Select -</option>
+            {{#each environments}}
+                <option {{default}} {{ disabled }} value="{{_id}}">{{envName}}</option>
+            {{/each}}
+        </select>
+    </div>
+</template>
+
+<template name="inlineDataTypeSelect">
+    <span class="dataset-type-select-inline">
+        {{>dataTypeSelect dataset_types=dataset_types}}
+    </span>
+</template>
+
+
+<template name="dataTypeSelect">
+    <select id="dataset-type-select" class="dataset chosen-select">
+        {{#each dataset_types}}
+            <option {{selected}} value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select>
+</template>
+
+
+<template name="observationsButtonSelect">
+    <div class="report-select__options report-select__options--observations">
+        <div class="report-select__option option--all option--all-observations"><span
+                class="option__text">Select All</span></div>
+        {{#each observations }}
+            {{> obsButton }}
+        {{else}}
+            The selected classroom doesn't have any observations.
+        {{/each}}
+        <div class="report-select__option report-select__option--spacer"></div>
+        <div class="report-select__option report-select__option--spacer"></div>
+        <div class="report-select__option report-select__option--spacer"></div>
+        <div class="report-select__option report-select__option--spacer"></div>
+    </div>
+</template>
+
+<template name="demographicHeatmapFilter">
+    <span class="select__wrapper">
+        <label class="explanation-text">{{filter.label}}</label>
+        <select multiple class="filter chosen-select" data-filter-demo-name="{{filter.label}}">
+            <!--<option selected value="">All</option>-->
+            {{#each opt in filter.options}}
+                <option value="{{opt}}">{{opt}}</option>
+            {{/each}}
+        </select>
+    </span>
+</template>
+
+
+<template name="spotlightDiscourseSelect">
+    <label for="student-spotlight__discourse-select">Discourse dimension</label>
+    <select id="student-spotlight__discourse-select" class="discourse disc-select-chosen">
+        <option disabled selected value="">- Select -</option>
+        {{#each discourseparams}}
+            <option data-options="{{options}}" value="{{label}}">{{label}}</option>
+        {{/each}}
+    </select>
+</template>
+
+<template name="heatmapReportSort">
+    <div class="heatmap-sort-select-wrapper">
+        <label for="students-sort">Select View:</label>
+        <select id="students-sort" class="students-select-sort">
+            <option selected value="classroom">Whole Classroom</option>
+            <!--<option value="quintiles">Contribution Count</option>-->
+            <option value="buckets">Demographic Groups</option>
+        </select>
+    </div>
+    {{#if showDemoSelect }}
+        <!-- wrapper required to this all is removed reactively -->
+        <div class="heatmap-demo-select-wrapper">
+            {{> heatmapReportSortDemo demoParams=demoParams}}
+        </div>
+    {{/if}}
+</template>
+
+<template name="heatmapReportSortDemo">
+    <label for="students-buckets-demo">Demographic:</label>
+    <select id="students-buckets-demo" class="students-select-buckets-demo">
+        {{#each demoParams }}
+            <option {{default}} value="{{label}}">{{label}}</option>
+        {{/each}}
+    </select>
+</template>
+
+
+<template name="histogramDemoSelect">
+    <div class="{{class_prefix}}-demographic__wrapper">
+        <label for="{{class_prefix}}-demographic">Select Demographic</label>
+        <select id="{{class_prefix}}-demographic" class="demographic {{class_prefix}}-demographic-chosen">
+            <option selected value="">{{default}}</option>
+            {{#each demographics}}
+                <option data-options="{{options}}" value="{{label}}">{{label}}</option>
+            {{/each}}
+        </select>
+    </div>
+</template>
+
+
+<template name="studentSpotlight">
+    <div class="student-spotlight">
+        <div class="student-spotlight__close"><i class="fa fa-2x fa-times"></i></div>
+        {{#if selectedStudent}}
+            <h3 class="student-spotlight__name">{{selectedStudent.info.name}}</h3>
+            <div class="student-spotlight__demographics">
+                <h4>Demographics</h4>
+                <ul>
+                    {{#each arrayify selectedStudent.info.demographics}}
+                        <li><span class="demo-label">{{name}}:</span> <span class="demo-value">{{value}}</span></li>
+                    {{/each}}
+                </ul>
+            </div>
+            <div class="student-spotlight__discourse-type-select">
+                <h4>Student information graphs</h4>
+                <p>Choose which discourse dimension you want to view graphs for.</p>
+                {{>spotlightDiscourseSelect discourseparams=discourseparams }}
+            </div>
+            <div class="student-spotlight__student-contributions">
+                <h4>Contributions</h4>
+                <div class="student-contributions-graph__graph-key"></div>
+                <div class="student-contributions-graph__graph"></div>
+                {{>cacheInfoBlock cache_info=cache_info_student_contrib}}
+            </div>
+            <div class="student-spotlight__student-participation-time">
+
+                <h4>Participation over time</h4>
+                {{#if multipleObservationsChosen }}
+                    <div class="student-participation-time__graph-key"></div>
+                    <div class="student-participation-time__graph"></div>
+                    {{>cacheInfoBlock cache_info=cache_info_student_time}}
+                {{ else }}
+                    <div class="student-participation-time__no-data">
+                        You need to select at least two observations to see this student's participation over time.
+                    </div>
+                {{/if}}
+            </div>
+        {{else}}
+            <p>Oops, that student doesn't appear to have any data. If you think this is a bug, please report it to us
+                using the link in the footer.</p>
+        {{/if}}
+    </div>
+</template>

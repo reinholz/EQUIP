@@ -1,0 +1,79 @@
+<template name="heatmapReport">
+    {{> reportBackButton }}
+
+    <div class="report-section-wrapper">
+        <h2 class="report-title">Heatmap Report</h2>
+
+        <!--<div class="report-section-wrapper__slide-track">-->
+        <!--<div class="report-section-wrapper__slide">-->
+
+        <section data-slide-id="params" class="report-section report-section--select">
+            <a class="report-tutorial" target="_blank" href="http://docs.equip.ninja/en/latest/usage/reports/#heatmap">Tutorials</a>
+
+            <h3>
+                Classroom: <span class="env-select {{#if
+                    selectedStudent}} env-select--disabled {{/if}}">{{>environmentSelect environments=environments}}</span>
+            </h3>
+            {{#if environmentChosen }}
+                <h3 class="heatmap-report__sort">{{>heatmapReportSort demoParams=demographic_filters }}</h3>
+            {{/if}}
+
+            {{#if environmentChosen }}
+                <h2>Choose one or more observations.</h2>
+                <p> Click observations on the timeline to select them.</p>
+                <p>Drag the graph to see earlier or later observations.</p>
+                <div class="report-select__options report-select__options--observations">
+                    <div id="vis-container"></div>
+                </div>
+            {{/if}}
+
+
+            {{#if observationNames}} <h3>Observations: {{ observationNames }}</h3> {{/if }}
+
+            {{#if observationChosen}}
+                {{>absentStudents observations=observations}}
+            {{/if}}
+        </section>
+
+        {{#if environmentChosen }}{{#if observationChosen }}
+        <section class="report-section report-section__graph">
+            <div class="heatmap-report-wrapper report-wrapper {{#if loadingDataClass}}report-wrapper--loading{{/if}}">
+                <div class="heatmap-report">
+                    <div class="heatmap-report__graph">
+                        {{#if students }}
+                            <h3>Click on a student to see more details.</h3>
+                            <div class="subjects" id="heatmap-d3-wrapper">
+
+                            </div>
+                            {{>cacheInfoBlock cache_info=cache_info}}
+                        {{/if}}
+                    </div>
+                    <div class="heatmap-report__graph-key"></div>
+                    <div class="heatmap-report__graph-stat">{{#if totalContributions}}
+                        <h4>Total contributions: {{totalContributions}}</h4>{{/if}}</div>
+                    <!--<div class="heatmap-report__sort">-->
+                    <!---->
+                    <!--</div>-->
+                    <div class="heatmap-report__filters">
+                        {{#if showFilters}}
+                            <h4>Additional filters</h4>
+                            <div class="filters__wrapper">
+                                {{#each filter in demographic_filters }}
+                                    {{> demographicHeatmapFilter filter=filter }}
+                                {{/each}}
+                            </div>
+                        {{/if}}
+                    </div>
+                    <div class="heatmap-report__student-spotlight spotlight-wrapper {{#if
+                            selectedStudent}} student-spotlight--active {{/if}}">
+                        {{> studentSpotlight selectedStudent=selectedStudent discourseparams=discourseparams multipleObservationsChosen=multipleObservationsChosen cache_info_student_contrib=cache_info_student_contrib cache_info_student_time=cache_info_student_time}}
+                    </div>
+                </div>
+            </div>
+        </section>
+        {{/if}}{{/if}}
+
+        <!--</div>-->
+        <!--</div>-->
+    </div>
+</template>

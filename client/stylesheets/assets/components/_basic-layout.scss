@@ -1,0 +1,54 @@
+$container-size: 1050px;
+$padding: 16px;
+
+.page-section {
+  max-width: $container-size;
+  padding: $padding;
+  margin: 20px auto;
+  background: white;
+
+  p {
+    font-size: 16px;
+  }
+}
+
+.simple-button {
+  background-color: #F25F3D;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.2em;
+  padding: 8px 12px;
+  border: 0;
+  margin: 3px;
+}
+
+.simple-button--mini {
+  padding: 1px 6px;
+  line-height: 1em;
+  margin: 0;
+}
+
+.loading-data__text {
+  text-align: center;
+}
+
+.loading-bar {
+  width: 500px;
+  max-width: 100%;
+  overflow: hidden;
+  height: 40px;
+  margin: 0 auto;
+  position: relative;
+  padding: 1rem 0;
+  border: 1px solid #dddddd;
+}
+
+.loading-bar__fill {
+  height: 100%;
+  transition: width 0.2s ease-in-out;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: var(--orange);
+}

@@ -1,0 +1,58 @@
+<template name="histogramReport">
+    {{> reportBackButton }}
+
+    <div class="report-section-wrapper">
+        <h2 class="report-title">Histogram Report</h2>
+
+        <!--<div class="report-section-wrapper__slide-track">-->
+        <!--<div class="report-section-wrapper__slide">-->
+
+        <section class="report-section report-section--main">
+            <a class="report-tutorial" target="_blank" href="http://docs.equip.ninja/en/latest/usage/reports/#histogram">Tutorials</a>
+
+            <h3>
+                Classroom: <span class="env-select {{#if
+                    selectedStudent}} env-select--disabled {{/if}}">{{>environmentSelect environments=environments}}</span>
+            </h3>
+            {{#if environmentChosen }}
+                <h2>Choose one or more observations.</h2>
+                <p>Click observations on the timeline to select them.</p>
+                <p>Drag the graph to see earlier or later observations.</p>
+                <div class="report-select__options report-select__options--observations">
+                    <div id="vis-container"></div>
+                </div>
+            {{/if}}
+            {{#if observationNames}} <h3>Observations: {{ observationNames }}</h3> {{/if }}
+            {{#if observationChosen }}
+                {{>absentStudents observations=observations}}
+                {{> histogramDemoSelect demographics=demographics class_prefix="histogram" default="- Select -"}}
+            {{/if }}
+        </section>
+        <section class="report-section report-section__graph">
+            <div class="histogram-report-wrapper report-wrapper {{#if loadingDataClass}}report-wrapper--loading{{/if}}">
+                <div class="histogram-report">
+                    <div class="histogram-report__graph">
+                        {{#if students }}
+                            {{#if histogramDemoOptionSelected }}
+                                <h3>Click on a student to see more details.</h3>
+                            {{else}}
+                                <h3>Choose a demographic above to highlight the students below.</h3>
+                            {{/if}}
+                            <div class="subjects" id="histogram-d3-wrapper">
+
+                            </div>
+                            {{>cacheInfoBlock cache_info=cache_info}}
+                        {{/if}}
+                    </div>
+                    <div class="histogram-report__graph-key"></div>
+                    <div class="histogram-report__student-spotlight spotlight-wrapper {{#if
+                            selectedStudent}} student-spotlight--active {{/if}}">
+                        {{> studentSpotlight selectedStudent=selectedStudent discourseparams=discourseparams multipleObservationsChosen=multipleObservationsChosen cache_info_student_time=cache_info_student_time cache_info_student_contrib=cache_info_student_contrib}}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--</div>-->
+        <!--</div>-->
+    </div>
+</template>

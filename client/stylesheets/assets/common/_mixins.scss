@@ -1,0 +1,62 @@
+@mixin transition($transition...) {
+  transition: $transition;
+}
+
+@mixin transition-property($property...) {
+  transition-property: $property;
+}
+
+@mixin transition-duration($duration...) {
+  transition-duration: $duration;
+}
+
+@mixin transition-timing-function($timing...) {
+  transition-timing-function: $timing;
+}
+
+@mixin transition-delay($delay...) {
+  transition-delay: $delay;
+}
+
+@mixin nt($prop: all, $time: .15s, $anim: ease-in-out) {
+  // These are seperated to allow for multiple attribute selection with unquote('item, item2') syntax.
+  // @include nt($attr: unquote('width, opacity'));
+  // You may also use single attributes.
+  // @include nt($attr: width);
+  // Or none at all
+  // @include nt;
+  @include transition-property($prop);
+  @include transition-duration($time);
+  @include transition-timing-function($anim);
+}
+
+
+@keyframes spinner-border {
+  to {
+    transform: rotate(0deg) translate(-50%, -50%);
+  }
+  from {
+    transform: rotate(360deg) translate(-50%, -50%);
+  }
+}
+
+@mixin loading-spinner() {
+  position: relative;
+  &:after {
+    position: absolute;
+    left: 50%;
+    z-index: 20000;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    content: '';
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    vertical-align: text-bottom;
+    border: 0.25em solid $spinner-color;
+    border-radius: 50%;
+    border-right-color: transparent;
+    transform-origin: 0% 0%;
+    animation: spinner-border 1s linear infinite;
+  }
+}

@@ -1,0 +1,84 @@
+.research {
+  background: #fff;
+  padding: 1rem;
+  margin: 1rem auto;
+  display: block;
+  //box-shadow: 0 0 3px 1px rgba(0,0,0,0.1);
+  //a {
+  //  margin-top: 4px;
+  //  display: inline-block;
+  //}
+}
+
+.research__title {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.research__authors,
+.research__citation {
+  color: #666;
+}
+
+.research__content {
+  margin: 0.5rem 0;
+}
+
+.research__read {
+  margin: 0.5rem 0 0;
+  display: inline-block;
+}
+
+.page__heading {
+  padding: 3rem 2.5rem 0;
+
+  + .page__section {
+    padding-top: 1rem;
+  }
+}
+
+
+// manage
+
+.research--manage {
+  label {
+    display: block;
+    margin-top: 8px;
+  }
+  button {
+    margin-top: 16px;
+  }
+
+  textarea {
+    padding: 8px;
+  }
+  .research__meta,
+  .research__date {
+    display: flex;
+    margin: 0 -8px;
+    flex-flow: row wrap;
+    > div {
+      padding: 0 8px;
+    }
+  }
+
+  .research__image {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 -8px;
+    > label {
+      flex-basis: 100%;
+      padding: 0 8px;
+    }
+    .research-image__option {
+      padding: 8px 8px;
+    }
+    label img {
+      max-width: 150px;
+      height: auto;
+    }
+  }
+  //.research-image__option {
+  //  display: inline-block;
+  //}
+}
